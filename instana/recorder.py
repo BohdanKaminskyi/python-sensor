@@ -24,7 +24,7 @@ class StanRecorder(object):
                         "boto3", "cassandra", "celery-client", "celery-worker",
                         "couchbase", "django", "gcs", "gcps-producer",
                         "gcps-consumer", "log", "memcache", "mongo", "mysql",
-                        "postgres", "pymongo", "rabbitmq", "redis","render",
+                        "postgres", "pymongo", "rabbitmq", "kafka", "redis", "render",
                         "rpc-client", "rpc-server", "sqlalchemy", "soap",
                         "tornado-client", "tornado-server", "urllib3", "wsgi", "asgi")
 
