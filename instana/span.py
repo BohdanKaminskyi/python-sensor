@@ -250,7 +250,7 @@ class RegisteredSpan(BaseSpan):
 
     EXIT_SPANS = ("aiohttp-client", "boto3", "cassandra", "celery-client", "couchbase", "log", "memcache",
                   "mongo", "mysql", "postgres", "rabbitmq", "redis", "rpc-client", "sqlalchemy",
-                  "soap", "tornado-client", "urllib3", "pymongo", "gcs", "gcps-producer")
+                  "soap", "tornado-client", "urllib3", "pymongo", "gcs", "gcps-producer", "kafka")
 
     ENTRY_SPANS = ("aiohttp-server", "aws.lambda.entry", "celery-worker", "django", "wsgi", "rabbitmq",
                    "rpc-server", "tornado-server", "gcps-consumer", "asgi")
@@ -416,6 +416,11 @@ class RegisteredSpan(BaseSpan):
             self.data["redis"]["command"] = span.tags.pop('command', None)
             self.data["redis"]["error"] = span.tags.pop('redis.error', None)
             self.data["redis"]["subCommands"] = span.tags.pop('subCommands', None)
+
+        elif span.operation_name == "kafka":
+            self.data["kafka"]["service"] = span.tags.pop('kafka.service', None)
+            self.data["kafka"]["access"] = span.tags.pop('kafka.access', None)
+            self.data["kafka"]["error"] = span.tags.pop('kafka.error', None)
 
         elif span.operation_name == "rpc-client":
             self.data["rpc"]["flavor"] = span.tags.pop('rpc.flavor', None)
